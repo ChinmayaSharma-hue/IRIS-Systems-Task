@@ -84,6 +84,5 @@ Launch the application in a docker container. Launch a separate container for th
 ![image](https://user-images.githubusercontent.com/76653568/172456510-eaead038-9235-4335-8135-b42421b4553c.png)<br>
 ![image](https://user-images.githubusercontent.com/76653568/172456358-5a63d36b-0765-40fa-92b6-d432947ba012.png)<br><br>
 - Site available at port 8080,
-  ![image](https://user-images.githubusercontent.com/76653568/172460315-0f966092-13c0-464b-96cf-33d32f9bfaac.png)
-
+![image](https://user-images.githubusercontent.com/76653568/172460875-2694f4a6-75a2-4f42-a0f5-f20083641506.png)
 
