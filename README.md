@@ -113,5 +113,12 @@ Now launch two more containers of the rails application. All three containers sh
         }
     }
     ```
+- Running Containers,
+  ![image](https://user-images.githubusercontent.com/76653568/172461824-7b8d64ca-1d41-43b4-89e2-6e683f5db5a6.png)
+  Load balancer distributing the requests,
+  ![WhatsApp Image 2022-06-07 at 9 11 20 PM](https://user-images.githubusercontent.com/76653568/172461931-eb9670c7-9884-4145-a8b1-bbcce7ddf607.jpeg)
+- Site running at port 8080,
+  ![image](https://user-images.githubusercontent.com/76653568/172462659-102a1b48-3c93-494a-b51f-5457836b0bc7.png)
+
 
  
