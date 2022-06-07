@@ -77,4 +77,4 @@ Launch an Nginx container, and configure it as a reverse proxy to the rails appl
   ![image](https://user-images.githubusercontent.com/76653568/172460663-30fa4438-3615-4586-9584-f6c65d922f48.png)
   
 - Site available at port 8080,
-  ![image](https://user-images.githubusercontent.com/76653568/172460315-0f966092-13c0-464b-96cf-33d32f9bfaac.png)
+![image](https://user-images.githubusercontent.com/76653568/172460918-2f344f56-5fca-4104-a1f5-fff6a058ab98.png)
