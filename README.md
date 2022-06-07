@@ -73,7 +73,8 @@ Launch an Nginx container, and configure it as a reverse proxy to the rails appl
     ```
  - Running Containers,
   ![image](https://user-images.githubusercontent.com/76653568/172460224-4f4805f9-8ae4-4bb9-a948-75b560b26e39.png)<br>
-  ![image](https://user-images.githubusercontent.com/76653568/172459911-2f50830a-7a5d-4d2d-b9e5-1d96e9381fa9.png)
-  Rails application not accessible directly, must go through nginx as can be seen from the ports for each container.
+  Rails application not accessible directly, must go through nginx as can be seen from the ports for each container.<br>
+  ![image](https://user-images.githubusercontent.com/76653568/172460663-30fa4438-3615-4586-9584-f6c65d922f48.png)
+  
 - Site available at port 8080,
   ![image](https://user-images.githubusercontent.com/76653568/172460315-0f966092-13c0-464b-96cf-33d32f9bfaac.png)
