@@ -46,7 +46,7 @@ Launch an Nginx container, and configure it as a reverse proxy to the rails appl
             links:
             - app
             volumes:
-            - ./revprx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
             restart: always
   ```
 - nginx configuration file, nginx.conf
