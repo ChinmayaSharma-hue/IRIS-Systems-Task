@@ -1,6 +1,6 @@
 # IRIS-Systems-Task
 
-### Task 1
+### Task 2
 Launch the application in a docker container. Launch a separate container for the database and ensure that the two containers are able to connect.
 1. The DB port should not be exposed to the host or external network. It must be internal to the docker network only.
 2. Expose the application port to the host machine at 8080. So you should be able to access the app at “localhost:8080”.
@@ -80,3 +80,10 @@ Launch the application in a docker container. Launch a separate container for th
 
     ```
     Resetting the password is not needed in the application container anymore as the database container is a separate container, with the password sent in the environment variables.
+Running Containers,
+![image](https://user-images.githubusercontent.com/76653568/172456510-eaead038-9235-4335-8135-b42421b4553c.png)
+![image](https://user-images.githubusercontent.com/76653568/172456358-5a63d36b-0765-40fa-92b6-d432947ba012.png)
+Site available at port 8080,
+![image](https://user-images.githubusercontent.com/76653568/172456446-e0bf7452-c01d-4612-9147-ceaac6d1a53e.png)
+
+
