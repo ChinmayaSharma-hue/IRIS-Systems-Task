@@ -1,29 +1,67 @@
 # IRIS-Systems-Task
 
 ### Task 1
-Pack the rails application in a docker container image.
+Launch the application in a docker container. Launch a separate container for the database and ensure that the two containers are able to connect.
+1. The DB port should not be exposed to the host or external network. It must be internal to the docker network only.
+2. Expose the application port to the host machine at 8080. So you should be able to access the app at “localhost:8080”.
 
-- Dockerfile
+- docker-compose
+  ```
+    version: '3.8'
+
+    services:
+    db:
+        image: mysql:5.7
+        restart: always
+        environment:
+        - MYSQL_ROOT_PASSWORD=password
+        - MYSQL_DATABASE=app
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=password
+        expose:
+        - '3306'
+        volumes:
+        - ./databasebackup/data:/var/lib/mysql
+    app:
+        build: ./Shopping-App-IRIS
+        # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+        ports:
+        - "8080:3000"
+        volumes:
+        - ./Shopping-App-IRIS:/Shopping-App-IRIS
+        depends_on:
+        - db
+        links:
+        - db
+        environment:
+        - DB_USER=root
+        - DB_NAME=app
+        - DB_PASSWORD=password
+        - DB_HOST=db
+  ```
+- database.yml
     ```
-    FROM ruby:2.5.1-stretch
-    RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs mysql-server
-    RUN mkdir /Shopping-App-IRIS
-    WORKDIR /Shopping-App-IRIS
-    ADD Gemfile /Shopping-App-IRIS/Gemfile
-    ADD Gemfile.lock /Shopping-App-IRIS/Gemfile.lock
-    ADD . /Shopping-App-IRIS
+    default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    database: <%= ENV['DB_NAME'] %>
+    username: <%= ENV['DB_USER'] %>
+    password: <%= ENV['DB_PASSWORD'] %>
+    host: <%= ENV['DB_HOST'] %>
+    socket: /var/run/mysqld/mysqld.sock
 
-    EXPOSE 3000
-    RUN bundle install
+    development:
+    <<: *default
 
+    test:
+    <<: *default
 
-    COPY entrypoint.sh /usr/bin/
-    RUN chmod +x /usr/bin/entrypoint.sh
-    ENTRYPOINT ["entrypoint.sh"]
+    production:
+    <<: *default
 
-    CMD [ "rails", "server", "-b", "0.0.0.0" ]
     ```
-- Entrypoint script (entrypoint.sh)
+- Modified Entrypoint file
     ```
     #!/bin/bash
     set -e
@@ -31,28 +69,14 @@ Pack the rails application in a docker container image.
     # Remove a potentially pre-existing server.pid for Rails.
     rm -f /Shopping-App-IRIS/tmp/pids/server.pid
 
-    # Resetting the database password
-    /etc/init.d/mysql stop
-
-    mysqld_safe --init-file=/tmp/sqlinit.sql
-
-    /etc/init.d/mysql stop
-    /etc/init.d/mysql start
-    export SHOP1_DATABASE_PASSWORD='chinmay2002'
-
-    # Create and migrate the database
+    # run the database
     rake db:create
     rake db:migrate
     bundle pack
     bundle install --path vendor/cache
 
-    # Execute the container's main process (what's set as CMD in the Dockerfile).
+    # Then exec the container's main process (what's set as CMD in the Dockerfile).
     exec "$@"
 
     ```
-- SQL file for resetting the database password (tmp/sqlinit.sql)
-    ```
-    use mysql;
-    update user set password=PASSWORD("chinmay2002") where User='root';
-    flush privileges;
-    ```
+    Resetting the password is not needed in the application container anymore as the database container is a separate container, with the password sent in the environment variables.
