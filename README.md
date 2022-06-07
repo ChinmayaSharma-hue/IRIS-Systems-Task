@@ -1,37 +1,8 @@
 # IRIS-Systems-Task
 
-### Task 5
-Enable persistence for the DB data and Nginx config files so that they are available even when the containers go down.
+### Task 6
+Use docker-compose to easily bring these containers up together with a single command.
 
-- docker-compose
-  ```
-    app1:
-    ...
-        volumes:
-        - ./Shopping-App-IRIS:/Shopping-App-IRIS
-    ...
-    app2:
-    ...
-        volumes:
-        - ./Shopping-App-IRIS:/Shopping-App-IRIS
-    ...
-    app3:
-    ...
-        volumes:
-        - ./Shopping-App-IRIS:/Shopping-App-IRIS
-    ...
-    db:
-    ...
-        volumes:
-        - ./databasebackup/data:/var/lib/mysql
-    ...
-    nginx:
-    ... 
-        volumes: 
-        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    ...
-    ```
-    Volume mounts used for mysql container which backs up the data when a container is stopped, so that the user can sign in without signing up again when the container is restarted. Volume mount used for nginx container also which makes it sensitive to changes made to the config files when container is up so that it is reflected when container is restarted.
-
+The `docker-compose up` command is used to start all the containers in the right order, as the services are linked correctly. The database is started first, then the application instances and then the nginx container.
 
  
