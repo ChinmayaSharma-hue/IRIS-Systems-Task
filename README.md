@@ -1,6 +1,6 @@
 # IRIS-Systems-Task
 
-### Task 6
+### Task 7
 Add requests rate limit to Nginx to limit the number of HTTP requests to the application in a given period.
 
 Changes need to be made to the `nginx.`conf` file to include the requests limit context within HTTP and to define the total number of requests per second as 5, and to accommodate bursts by having a queue of 20 slots so that requests are served as soon as they are made.
