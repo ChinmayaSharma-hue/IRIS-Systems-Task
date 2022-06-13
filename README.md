@@ -103,5 +103,12 @@ services:
     restart: always
 
 ```
+<<<<<<< HEAD
 After building and running all the docker containers,
+=======
+where 0 0 * * * means that the cronjob is going to be executed at 00:00 hours every day (at midnight).
+The docker-compose exec allows running commands inside the container specified, in this case, the `db` container where the `mysqldump` command allows to dump the data into the host machine every night.
+
+![image](https://user-images.githubusercontent.com/76653568/173197500-6caa0fbe-e344-4835-9018-6037fe76fb6d.png)
+>>>>>>> a73e9eaa2dc6cc43ead6d05c7181bfcfd805b550
 
